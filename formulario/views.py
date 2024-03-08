@@ -16,12 +16,16 @@ def formulario_view(request):
             asunto = datos['asunto']
             mensaje = datos['mensaje']
 
+            # Utiliza el nombre y el apellido como el remitente del correo electrónico
+            remitente = f"{nombre} {apellido} <{email}>"
+
+
             # Enviar correo electrónico
             contenido = f"Nombre: {nombre} {apellido}\nCorreo electrónico: {email}\nAsunto: {asunto}\n\nMensaje:\n{mensaje}"
             send_mail(
                 f'Formulario de Contacto - {asunto}',
                 contenido,
-                email,
+                remitente,
                 ['hectorcobea03@gmail.com'],
                 fail_silently=False,
             )
